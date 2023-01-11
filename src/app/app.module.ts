@@ -28,6 +28,8 @@ import { AuthModule } from './auth/auth.module';
         PagesModuleModule,
         SharedModule,
         AuthModule,
+        
+
     ]
 })
 export class AppModule { }
