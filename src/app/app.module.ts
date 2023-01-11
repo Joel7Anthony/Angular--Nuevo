@@ -13,6 +13,7 @@ import { SharedComponent } from './shared/shared.component';
 import { SharedModule } from "./shared/shared.module";
 import { PagesModuleModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
+import { HttpClient, HttpClientModule  } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,7 @@ import { AuthModule } from './auth/auth.module';
         PagesModuleModule,
         SharedModule,
         AuthModule,
-        
+        HttpClientModule
 
     ]
 })
