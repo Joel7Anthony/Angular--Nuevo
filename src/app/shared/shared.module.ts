@@ -16,6 +16,7 @@ import { SharedComponent } from './shared.component';
     NavLeftComponent,
     BreadcrumbsComponent,
     SharedComponent,
+    NavComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { SharedComponent } from './shared.component';
     NavLeftComponent,
     BreadcrumbsComponent,
     SharedComponent,
+    NavComponent,
   ]
 })
 export class SharedModule { };

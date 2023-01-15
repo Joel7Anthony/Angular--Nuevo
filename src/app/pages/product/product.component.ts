@@ -1,22 +1,74 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient as HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent  {
- constructor( private httpClient: HttpClient) {
-  
- };
- getProducts(): void{
-  const reponse = this.httpClient.get("api.escuelajs.co/api/v1/products").subscribe(response => {
-    console.log(reponse);
-  })
-  console.log(reponse);
- }
- ngOnInit():void {
-  this.getProducts();
- };
+export class ProductComponent implements OnInit {
+  constructor(private httpClient: HttpClient) {
+  };
+  ngOnInit(): void {
+     //this.getProducts();
+      //this.getProduct();
+     // this.createProduct();
+      //this.updateProduct();
+      this.deleteProduct();
+  };
+  getProducts() {
+    const url = "https://api.escuelajs.co/api/v1/products";
+    const response = this.httpClient.get(url).subscribe
+      (response => {
+        console.log(response)
+      });
+  }
+
+  getProduct() {
+
+    const url = "https://api.escuelajs.co/api/v1/products/236";
+    const response = this.httpClient.get(url).subscribe
+      (response => {
+        console.log(response)
+      });
+  }
+
+  createProduct() {
+    const data = {
+      title: "zapato",
+      price: 500,
+      description: "deportiva/ David Castro",
+      images: ['https://imgs.search.brave.com/qEv56PXlDP4gIkWR4_SdI0LxhwxBY-PvDn8BodT0nkU/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC56/YzUwUVVMRHI3dzBF/NnZrSk8xQVRnSGFF/NyZwaWQ9QXBp'],
+      categoryId: 3,
+    }
+    const url = "https://api.escuelajs.co/api/v1/products";
+    this.httpClient.post(url, data).subscribe
+      (response => {
+        console.log(response)
+      });
+  }
+  updateProduct() {
+    const data = {
+      title: "camiseta",
+      price: 20,
+      description: "deportiva/ David Castro",
+      images: ['https://imgs.search.brave.com/qEv56PXlDP4gIkWR4_SdI0LxhwxBY-PvDn8BodT0nkU/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC56/YzUwUVVMRHI3dzBF/NnZrSk8xQVRnSGFF/NyZwaWQ9QXBp'],
+      categoryId: 3,
+    }
+    const url = "https://api.escuelajs.co/api/v1/products/239";
+    this.httpClient.put(url, data).subscribe
+      (response => {
+        console.log(response)
+      });
+  }
+
+  deleteProduct() {
+
+    const url = "https://api.escuelajs.co/api/v1/products/239";
+    this.httpClient.delete(url).subscribe
+      (response => {
+        console.log(response)
+      });
+  }
+
 }
