@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient as HttpClient} from '@angular/common/http';
+import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
 
 @Component({
   selector: 'app-product',
@@ -7,68 +8,65 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  constructor(private httpClient: HttpClient) {
-  };
-  ngOnInit(): void {
-     //this.getProducts();
-      //this.getProduct();
-     // this.createProduct();
-      //this.updateProduct();
-      this.deleteProduct();
-  };
-  getProducts() {
-    const url = "https://api.escuelajs.co/api/v1/products";
-    const response = this.httpClient.get(url).subscribe
-      (response => {
-        console.log(response)
-      });
+  constructor(private productHttpService: ProductHttpServiceService) {};
+
+
+  getProducts():void{
+    const url ="https://api.escuelajs.co/api/v1/products";
+    this.productHttpService.getAll().subscribe
+    (response => {console.log(response);
+    });
   }
 
-  getProduct() {
-
-    const url = "https://api.escuelajs.co/api/v1/products/236";
-    const response = this.httpClient.get(url).subscribe
-      (response => {
-        console.log(response)
-      });
+  getProduct(){
+    const url ="https://api.escuelajs.co/api/v1/products/20";
+    this.productHttpService.getOne(2).subscribe
+    (response => {console.log(response);
+    });
   }
 
-  createProduct() {
+  createProduct(){
     const data = {
-      title: "zapato",
-      price: 500,
-      description: "deportiva/ David Castro",
-      images: ['https://imgs.search.brave.com/qEv56PXlDP4gIkWR4_SdI0LxhwxBY-PvDn8BodT0nkU/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC56/YzUwUVVMRHI3dzBF/NnZrSk8xQVRnSGFF/NyZwaWQ9QXBp'],
-      categoryId: 3,
+      title:"Zapatos",
+      price:20,
+      description:"deportivos / Henry Tito",
+      images:["https://sdfsdgsdhasjh"],
+      categoryId:1
     }
-    const url = "https://api.escuelajs.co/api/v1/products";
-    this.httpClient.post(url, data).subscribe
-      (response => {
-        console.log(response)
-      });
+    const url = "https://i.pinimg.com/originals/15/c5/69/15c56972ae4fbb6b394a6e6efced477b.jpg";
+    this.productHttpService.store(data).subscribe(
+      response => {console.log(response);
+      }
+    );
   }
-  updateProduct() {
+
+  updateProduct(){
     const data = {
-      title: "camiseta",
-      price: 20,
-      description: "deportiva/ David Castro",
-      images: ['https://imgs.search.brave.com/qEv56PXlDP4gIkWR4_SdI0LxhwxBY-PvDn8BodT0nkU/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC56/YzUwUVVMRHI3dzBF/NnZrSk8xQVRnSGFF/NyZwaWQ9QXBp'],
-      categoryId: 3,
+      title:"camisas",
+      price:25,
+      description:"ropa deportiva / Henry Tito",
     }
-    const url = "https://api.escuelajs.co/api/v1/products/239";
-    this.httpClient.put(url, data).subscribe
-      (response => {
-        console.log(response)
-      });
+    const url = "https://api.escuelajs.co/api/v1/products/208";
+    this.productHttpService.update(61, data).subscribe(
+      response => {console.log(response);
+      }
+    );
   }
 
-  deleteProduct() {
+  deleteProduct(){
+    const url = "https://api.escuelajs.co/api/v1/products/208";
+    this.productHttpService.destroy(61, url ).subscribe(
+      response => {console.log(response);
+      }
+    );
+  }
 
-    const url = "https://api.escuelajs.co/api/v1/products/239";
-    this.httpClient.delete(url).subscribe
-      (response => {
-        console.log(response)
-      });
+  ngOnInit(): void{
+    //this.getProducts();
+    //this.getProduct();
+    //this.createProduct();
+    //this.updateProduct();
+    //this.deleteProduct();
   }
 
 }
