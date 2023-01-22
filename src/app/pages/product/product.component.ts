@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient as HttpClient} from '@angular/common/http';
 import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
 
 @Component({
@@ -55,7 +54,7 @@ export class ProductComponent implements OnInit {
 
   deleteProduct(){
     const url = "https://api.escuelajs.co/api/v1/products/208";
-    this.productHttpService.destroy(61, url ).subscribe(
+    this.productHttpService.destroy(61).subscribe(
       response => {console.log(response);
       }
     );
