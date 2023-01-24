@@ -1,1 +1,53 @@
-<p>TOÑO!</p>
+<h1>PRODUCTOS</h1>
+productos
+
+<div class="container">
+    <div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Nombre del producto:</label>
+            <input type="text" name="" id="title" class="form-control" [value]="selectedProduct.title">
+        </div>
+    </div>
+    <div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Nombre del producto:</label>
+            <input type="text" name="" id="price" class="form-control" [value]="selectedProduct.price">
+        </div>
+    </div>
+    <div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Nombre del producto:</label>
+            <textarea name="" id="description" class="form-control" cols="30" rows="3">{{selectedProduct.title}}</textarea>
+        </div>
+    </div>
+    <div>
+        <button (click)="updateProduct">Guardar</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">descripciòn</th>
+                    <th scope="col">Ctegoria</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="" *ngFor="let product of products">
+                    <td>{{product.title}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.category}}</td>
+                    <td><img src="{{product.images}}" alt="" width="160px" height="160px"></td>
+                    <td><a href=""(click)="deleteProduct(product.id)">Eliminar</a></td>
+                    <td><a href=""(click)="editProduct(product)">Editar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

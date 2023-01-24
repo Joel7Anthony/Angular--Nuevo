@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient as HttpClient} from '@angular/common/http';
 import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
+import { ProductModel, UpdateProductDto } from 'src/app/entities/product.model';
 
 @Component({
   selector: 'app-product',
@@ -7,18 +9,23 @@ import { ProductHttpServiceService } from 'src/app/services/product-http-service
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+products: ProductModel[] = [];
+selectedProduct: UpdateProductDto = {title:'', price:0, description:''};
   constructor(private productHttpService: ProductHttpServiceService) {};
+   
+  initProduct(){
+    this.selectedProduct = {title:'', price:0, description:''}
+  }
 
-
-  getProducts():void{
-    const url ="https://api.escuelajs.co/api/v1/products";
+  getProducts(){
     this.productHttpService.getAll().subscribe
-    (response => {console.log(response);
+    (response => {
+      this.products=response;
+      console.log(response);
     });
   }
 
   getProduct(){
-    const url ="https://api.escuelajs.co/api/v1/products/20";
     this.productHttpService.getOne(2).subscribe
     (response => {console.log(response);
     });
@@ -39,29 +46,34 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  updateProduct(){
+  updateProduct(id:ProductModel['id']){
     const data = {
       title:"camisas",
       price:25,
       description:"ropa deportiva / Henry Tito",
     }
     const url = "https://api.escuelajs.co/api/v1/products/208";
-    this.productHttpService.update(61, data).subscribe(
+    this.productHttpService.update(id, data).subscribe(
       response => {console.log(response);
       }
     );
   }
 
-  deleteProduct(){
-    const url = "https://api.escuelajs.co/api/v1/products/208";
-    this.productHttpService.destroy(61).subscribe(
-      response => {console.log(response);
+  editProduct(product:ProductModel){
+    this.selectedProduct = product;
+  }
+
+  deleteProduct(id:ProductModel['id']) {
+    this.productHttpService.destroy(id).subscribe(
+      response => {
+        this.products = this.products.filter(product => product.id != id);
+        console.log(response);
       }
     );
   }
 
   ngOnInit(): void{
-    //this.getProducts();
+    this.getProducts();
     //this.getProduct();
     //this.createProduct();
     //this.updateProduct();
