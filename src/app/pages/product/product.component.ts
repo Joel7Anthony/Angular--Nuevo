@@ -50,7 +50,7 @@ selectedProduct: UpdateProductDto = {title:'', price:0, description:''};
     const data = {
       title:"camisas",
       price:25,
-      description:"ropa deportiva / Anthony",
+      description:"ropa deportiva / Anthony Molina",
     }
     const url = "https://api.escuelajs.co/api/v1/products/208";
     this.productHttpService.update(id, data).subscribe(
