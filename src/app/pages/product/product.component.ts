@@ -35,7 +35,7 @@ selectedProduct: UpdateProductDto = {title:'', price:0, description:''};
     const data = {
       title:"Zapatos",
       price:20,
-      description:"deportivos / Henry Tito",
+      description:"deportivos / Anthony Molina",
       images:["https://sdfsdgsdhasjh"],
       categoryId:1
     }
@@ -50,7 +50,7 @@ selectedProduct: UpdateProductDto = {title:'', price:0, description:''};
     const data = {
       title:"camisas",
       price:25,
-      description:"ropa deportiva / Henry Tito",
+      description:"ropa deportiva / Anthony",
     }
     const url = "https://api.escuelajs.co/api/v1/products/208";
     this.productHttpService.update(id, data).subscribe(
